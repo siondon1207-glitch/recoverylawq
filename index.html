@@ -1,23 +1,787 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+  <style>
+        /* 기본 레이아웃 및 폰트 설정: 가독성 높은 폰트와 따뜻하고 품격 있는 색감 적용 */
+        body { 
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; 
+            line-height: 1.8; 
+            color: #333333; 
+            margin: 0; 
+            padding: 0; 
+            background-color: #faf8f5; 
+        }
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 40px 20px; 
+        }
+        
+        /* 헤더 스타일: 신뢰감을 주는 딥그린과 크림색 톤 */
+        header { 
+            background-color: #1f3a32; 
+            color: #ffffff; 
+            padding: 50px 0; 
+            text-align: center; 
+            border-radius: 16px; 
+            margin-bottom: 40px; 
+            box-shadow: 0 4px 20px rgba(31, 58, 50, 0.15);
+        }
+        header h1 { 
+            margin: 0; 
+            font-size: 2.2em; 
+            font-weight: 700; 
+            letter-spacing: -0.5px; 
+            line-height: 1.4;
+        }
+        header p {
+            margin: 15px 0 0 0;
+            font-size: 1.1em;
+            color: #d1e0db;
+            font-weight: 300;
+        }
+
+        /* 네비게이션 스타일 */
+        nav { 
+            background-color: #ffffff; 
+            border-radius: 12px; 
+            margin-bottom: 40px; 
+            padding: 12px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+        nav ul { 
+            list-style: none; 
+            padding: 0; 
+            margin: 0; 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: space-around; 
+        }
+        nav ul li a { 
+            display: block; 
+            padding: 12px 20px; 
+            text-decoration: none; 
+            color: #4b7a70; 
+            font-weight: 600; 
+            transition: all 0.3s ease; 
+            font-size: 1em;
+        }
+        nav ul li a:hover { 
+            background-color: #f4f1ea; 
+            color: #1f3a32; 
+            border-radius: 8px; 
+        }
+        
+        /* 주요 콘텐츠 스타일 */
+        h2 { 
+            border-bottom: 3px solid #4b7a70; 
+            padding-bottom: 15px; 
+            color: #1f3a32; 
+            margin-top: 50px; 
+            font-size: 1.8em; 
+            font-weight: 700; 
+        }
+        h3 { 
+            color: #2e5a44; 
+            margin-top: 35px; 
+            font-size: 1.4em; 
+            border-left: 5px solid #d4a373; 
+            padding-left: 15px; 
+        }
+        h4 { 
+            color: #4b7a70; 
+            margin-top: 25px; 
+            font-size: 1.15em; 
+            padding-bottom: 8px; 
+            border-bottom: 1px dotted #ccc; 
+        }
+        
+        /* 하이라이트 박스 */
+        .highlight { 
+            background-color: #f4f1ea; 
+            padding: 25px; 
+            border-radius: 12px; 
+            border-left: 6px solid #d4a373; 
+            margin: 30px 0; 
+            line-height: 1.8; 
+        }
+        .highlight strong { 
+            color: #1f3a32; 
+        }
+
+        /* 테이블 스타일 */
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin: 25px 0; 
+            background-color: #ffffff; 
+            border: 1px solid #e5e0d8; 
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        table th, table td { 
+            padding: 16px; 
+            text-align: center; 
+            border: 1px solid #e5e0d8; 
+            font-size: 0.95em;
+        }
+        table th { 
+            background-color: #4b7a70; 
+            color: #ffffff; 
+            font-weight: 600; 
+            border-top: none; 
+        }
+        table tr:nth-child(even) { 
+            background-color: #faf9f6; 
+        }
+        
+        /* 폼 요소 스타일 */
+        .form-section { 
+            background-color: #fcfbfa; 
+            border: 1px solid #e2ded5; 
+            padding: 30px; 
+            border-radius: 12px; 
+            margin: 35px 0; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+        }
+        .form-section h3 {
+            margin-top: 0;
+            border-left-color: #4b7a70;
+        }
+        .form-section label { 
+            display: block; 
+            margin-top: 18px; 
+            font-weight: 600; 
+            color: #4a473e; 
+        }
+        .form-section input[type="text"], 
+        .form-section input[type="number"], 
+        .form-section select, 
+        .form-section textarea {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            border: 1px solid #ccc7bc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            background-color: #ffffff;
+            font-size: 1em;
+            transition: all 0.3s;
+        }
+        .form-section input:focus, 
+        .form-section select:focus, 
+        .form-section textarea:focus {
+            border-color: #4b7a70;
+            box-shadow: 0 0 0 3px rgba(75, 122, 112, 0.15);
+            outline: none;
+        }
+        .submit-btn { 
+            background-color: #4b7a70; 
+            color: white; 
+            padding: 14px 28px; 
+            border: none; 
+            border-radius: 6px; 
+            cursor: pointer; 
+            font-size: 1.1em; 
+            font-weight: 600;
+            margin-top: 25px; 
+            transition: background-color 0.3s; 
+            width: 100%;
+        }
+        .submit-btn:hover { 
+            background-color: #1f3a32; 
+        }
+
+        /* 결과 창 스타일 */
+        .calc-result-box {
+            background-color: #f0ebe1;
+            border: 1px solid #dcd5c9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 25px;
+            display: none;
+        }
+        .calc-result-box h4 {
+            margin-top: 0;
+            color: #1f3a32;
+        }
+        .calc-note {
+            font-size: 0.85em;
+            color: #666;
+            margin-top: 15px;
+        }
+
+        /* 사이드바 및 레이아웃 조정 */
+        .content-wrap { 
+            display: flex; 
+            gap: 40px; 
+        }
+        .sidebar { 
+            flex: 1; 
+            min-width: 280px; 
+            padding: 25px; 
+            background-color: #ffffff; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03); 
+            align-self: flex-start;
+            border: 1px solid #e8e4db;
+        }
+        .main-content { 
+            flex: 3; 
+        }
+        
+        .sidebar h2 {
+            font-size: 1.3em;
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #d4a373;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 15px 0;
+        }
+        .sidebar ul li {
+            margin-bottom: 12px;
+        }
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #555;
+            font-size: 0.95em;
+            transition: color 0.2s;
+        }
+        .sidebar ul li a:hover {
+            color: #4b7a70;
+            font-weight: 600;
+        }
+
+        /* 외부 링크 섹션 */
+        .external-links h3 { 
+            color: #8c5d3a; 
+            border-left-color: #8c5d3a; 
+        }
+        .external-links ul { 
+            list-style: square; 
+            padding-left: 20px; 
+        }
+        .external-links li { 
+            margin-bottom: 12px; 
+        }
+        .external-links a { 
+            color: #4b7a70; 
+            text-decoration: none; 
+            font-weight: 500; 
+        }
+        .external-links a:hover { 
+            text-decoration: underline; 
+            color: #1f3a32; 
+        }
+
+        /* 그래프/다이어그램 Placeholder */
+        .chart-placeholder { 
+            text-align: center; 
+            margin: 35px 0; 
+            padding: 40px; 
+            background-color: #f7f5f0; 
+            border: 1px dashed #c4beaf; 
+            border-radius: 12px; 
+            color: #5d594f; 
+        }
+        .diagram-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .diagram-box {
+            background-color: #ffffff;
+            border: 1px solid #e1dbce;
+            border-radius: 8px;
+            padding: 15px;
+            width: 140px;
+            font-size: 0.9em;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+        .diagram-arrow {
+            font-size: 1.2em;
+            color: #4b7a70;
+        }
+        
+        /* 반응형 디자인 */
+        @media (max-width: 992px) {
+            .content-wrap { flex-direction: column; }
+            .sidebar { min-width: 100%; order: 1; }
+            .main-content { order: 2; }
+            header { padding: 35px 15px; border-radius: 0; margin: -20px -20px 20px -20px; }
+            .container { padding: 15px; }
+        }
+    </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "2026년 기준 개인회생기간은 보통 얼마나 소요되나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "개인회생 변제기간은 원칙적으로 3년(36개월)이며, 청산가치 보장이나 세금 체납 해결 등을 위해 필요한 경우 최장 5년(60개월)까지 연장될 수 있습니다. 2026년 기준 청년, 고령자, 다자녀 가구 등 특정 자격을 갖춘 사회적 배려 대상자는 최소 2년(24개월)으로 단축이 가능합니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "개인회생기간 단축이 가능한 6가지 조건은 무엇인가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "서울회생법원, 수원회생법원, 부산회생법원 등 주요 도산전문법원의 실무준칙에 의하면 만 30세 미만의 청년, 만 65세 이상의 고령자, 중증 장애인, 미성년 자녀 2인 이상 양육자, 한부모가족 부 또는 모, 전세사기 피해자는 변제계획 수립 시 변제기간을 2년 내외로 단축 적용받을 수 있습니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "2026년 기준 1인 가구 최저 생계비는 얼마인가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "보건복지부 고시에 따른 2026년도 기준 중위소득의 60%에 해당하는 1인 가구 최저 생계비는 1,538,543원입니다. 소득에서 이 생계비를 공제한 나머지 금액이 매달 법원에 납부하는 월 변제금액으로 결정됩니다."
+          }
+        }
+      ]
+    }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>개인회생기간 완벽 가이드: 2026년 변제기간 단축과 면책 조건 상세 해설</h1>
+            <p>신속한 경제적 재기를 위한 변제 기간 단축 전략 및 법원별 실무 기준 분석</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <nav>
+            <ul class="main-menu">
+                <li><a href="#rehab_structure">개인회생기간의 기본 구조</a></li>
+                <li><a href="#court_duration">전국 법원별 소요 기간 비교</a></li>
+                <li><a href="#shortcut_conditions">변제기간 단축 특례</a></li>
+                <li><a href="#payment_calculator">모의 변제금 계산기</a></li>
+                <li><a href="#cost_analysis">개인회생 예상 비용 및 수임료</a></li>
+                <li><a href="#community_reviews">커뮤니티 후기 분석</a></li>
+                <li><a href="#legal_resources">법률 신뢰성 사이트</a></li>
+            </ul>
+        </nav>
+
+        <div class="content-wrap">
+            
+            <aside class="sidebar">
+                <h2>개인회생 핵심 바로가기</h2>
+                <ul>
+                    <li><a href="#rehab_structure">1. 3년과 5년 변제기간의 차이점</a></li>
+                    <li><a href="#court_duration">2. 법원별 개시결정 소요 기간</a></li>
+                    <li><a href="#shortcut_conditions">3. 24개월 단축 특별 요건</a></li>
+                    <li><a href="#payment_calculator">4. 월 변제 예상 금액 산출</a></li>
+                    <li><a href="#cost_analysis">5. 수임료 분할 및 저렴한곳 찾기</a></li>
+                    <li><a href="#community_reviews">6. 내돈내산 후기 정밀 진단</a></li>
+                    <li><a href="#court_trends">7. 2026년 도산제도 변화상</a></li>
+                </ul>
+                
+                <div class="form-section">
+                    <h3>간이 변제금 자가진단</h3>
+                    <form id="side_calc_form" onsubmit="return false;">
+                        <label for="side_income">월 평균 소득액 (원)</label>
+                        <input type="number" id="side_income" placeholder="예: 2500000" required>
+                        
+                        <label for="side_family">부양 가족 수 (본인 포함)</label>
+                        <select id="side_family" id="side_family">
+                            <option value="1">1인 가구</option>
+                            <option value="2">2인 가구</option>
+                            <option value="3">3인 가구</option>
+                            <option value="4">4인 가구</option>
+                        </select>
+                        
+                        <label for="side_shortcut">단축 대상 여부 (청년/고령자 등)</label>
+                        <select id="side_shortcut">
+                            <option value="no">해당 없음</option>
+                            <option value="yes">해당 있음 (2년 단축)</option>
+                        </select>
+                        
+                        <button type="button" class="submit-btn" onclick="runQuickCalc()">신속 예상 결과 조회</button>
+                    </form>
+                    
+                    <div id="side_calc_result" class="calc-result-box">
+                        <p id="side_result_text"></p>
+                    </div>
+                </div>
+            </aside>
+
+            <main class="main-content">
+                <h2>2026년 개인회생기간: 합리적인 면책 설계를 위한 최신 법률 분석</h2>
+
+                <div class="highlight">
+                    <p><strong>개인회생기간</strong>은 변제금을 매월 납부하여 최종 면책을 받기까지 소요되는 정기적인 상환 기간과 법원 접수 후 진행되는 절차상 소요 기간을 모두 아우릅니다. 채무자 회생 및 파산에 관한 법률에 근거한 변제 기간은 <strong>기본 3년(36개월)에서 최장 5년(60개월)</strong>으로 규정되어 있습니다. 하지만 2026년 최신 보건복지부 중위소득 기준 상승과 함께, 서울, 경기, 영남, 충청, 전라 등 신설 회생법원들의 실무준칙에 의거해 <strong>최소 2년(24개월)까지 변제기간 단축</strong>을 적용받을 수 있는 폭이 대폭 확대되었습니다. 본 지침서는 복잡한 회생 과정에서 채무 부담을 최소화하는 효율적인 대처 요령을 제공합니다.</p>
+                </div>
+
+                <h3 id="rehab_structure">1. 개인회생기간의 기본 구조: 3년(36개월)과 5년(60개월)의 명확한 차이점</h3>
+                <p>개인회생 제도를 신청하는 많은 채무자분들이 혼동하는 영역 중 하나가 바로 변제 기간의 산정 방식입니다. 법원이 정하는 기본 상환 기간은 36개월이지만, 개인별 부채 현황과 재산 규모, 채무의 성격에 따라 60개월까지 차등 조정됩니다. 이러한 차이점이 발생하는 주요 원인들을 파악하면 사전에 보다 체계적인 대응책을 세울 수 있습니다.</p>
+
+                <h4>1.1. 청산가치 보장의 원칙과 기간 연장의 상관관계</h4>
+                <p>개인회생 신청 시 가장 기본적으로 충족해야 하는 원칙은 바로 청산가치 보장의 원칙입니다. 청산가치란 채무자가 현재 보유한 예적금, 부동산 임대차보증금, 차량, 부동산 등 모든 적극재산을 처분했을 때 환가할 수 있는 전체 금액 가치를 뜻합니다. 변제기간 동안 법원에 납부하게 되는 월 변제금의 총합이 이 청산가치보다 반드시 많아야 법원의 인가를 받을 수 있습니다.</p>
+                <p>만약 월 소득에서 최저 생계비를 차감한 가용소득으로 36개월 동안 납입한 누적 금액이 본인의 재산 가액보다 적다면, 법원은 변제금 총액을 높이기 위해 기간을 42개월, 48개월, 혹은 최대 60개월까지 강제로 연장하여 변제계획안을 수정하도록 권고합니다. 예컨대 경기도 성남시나 안산시에 아파트나 보증금을 소유한 채무자가 재산이 많아 가용소득으로 3년 내에 재산만큼 환가할 수 없다면, 최장 5년의 납부 기간을 감수해야 할 수밖에 없습니다.</p>
+
+                <h4>1.2. 우선권 있는 채권 및 세금 체납의 영향</h4>
+                <p>국세, 지방세, 국민건강보험료, 국민연금 등의 체납액은 개인회생에서 우선권 있는 채권으로 분류됩니다. 이 우선 채권들은 전체 변제 기간의 절반(즉, 3년의 경우 18개월)을 초과하여 변제할 수 없도록 엄격히 법으로 통제됩니다. 만약 국세청이나 세무서 체납액 규모가 너무 커서 18개월 내에 우선적으로 상환하기 불가능할 정도로 채무 구조가 열악한 상태라면, 변제 기간을 5년(60개월)까지 확대한 뒤 그 기간의 절반인 30개월에 걸쳐 세금을 먼저 완납하도록 강제 조정됩니다.</p>
+                <p>이러한 세금 및 공과금 체납액의 비중이 높은 채무자라면, 변제기간 단축 혜택은 현실적으로 적용이 불가능하므로, 본인의 주소지 관할인 부산, 대구, 대전, 광주 등의 법률 전문가와 상세한 세무 대행 컨설팅을 거쳐 철저한 분납 설계를 수립해야 합니다.</p>
+
+                <hr>
+
+                <h3 id="court_duration">2. 2026년 신설 회생법원과 전국 지역별 처리 소요 기간 비교</h3>
+                <p>과거에는 채무자 중심의 신속한 회생 제도를 이용하기 위해서 서울에 거주하는 이들에게만 유리하다는 인식이 팽배했습니다. 그러나 2026년 현재는 전국적인 도산전문 법원의 확충으로 인해 지방에 거주하는 채무자들도 고품질의 신속한 법적 구제 절차를 적용받을 수 있습니다. 2023년 개원한 수원회생법원과 부산회생법원에 이어, 2026년 3월 대구회생법원, 대전회생법원, 광주회생법원이 일제히 공식 신설되면서 실무 처리에 지각변동이 발생하고 있습니다.</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>관할 회생법원</th>
+                            <th>주요 관할 지역 (시, 군, 구)</th>
+                            <th>접수 후 금지명령 발령 평균 기간</th>
+                            <th>개시결정 평균 소요 기간</th>
+                            <th>실무준칙상 기간 단축 특례 적용</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>**서울회생법원**</td>
+                            <td>서울 전역</td>
+                            <td>3일 ~ 5일 이내</td>
+                            <td>3개월 ~ 5개월 내외</td>
+                            <td>적극 도입 및 최단 기간 보장</td>
+                        </tr>
+                        <tr>
+                            <td>**수원회생법원**</td>
+                            <td>수원, 용인, 성남, 안산, 평택 등 경기 남부</td>
+                            <td>3일 ~ 7일 이내</td>
+                            <td>4개월 ~ 6개월 내외</td>
+                            <td>서울과 동일한 수준의 유연한 실무</td>
+                        </tr>
+                        <tr>
+                            <td>**부산회생법원**</td>
+                            <td>부산, 창원, 진주, 김해, 울산 등 경남권</td>
+                            <td>5일 ~ 10일 이내</td>
+                            <td>5개월 ~ 8개월 내외</td>
+                            <td>부울경 중심 실무준칙에 의거 적극단축</td>
+                        </tr>
+                        <tr>
+                            <td>**대전회생법원**</td>
+                            <td>대전, 천안, 아산, 청주, 충주 등 충청권</td>
+                            <td>5일 ~ 8일 이내</td>
+                            <td>5개월 ~ 7개월 내외</td>
+                            <td>2026년 신설 직후 처리 속도 대폭 개선</td>
+                        </tr>
+                        <tr>
+                            <td>**대구회생법원**</td>
+                            <td>대구, 포항, 구미, 경주 등 경북권</td>
+                            <td>5일 ~ 10일 이내</td>
+                            <td>6개월 ~ 8개월 내외</td>
+                            <td>청년 및 생계형 채무 우선 단축 지원</td>
+                        </tr>
+                        <tr>
+                            <td>**광주회생법원**</td>
+                            <td>광주, 전주, 군산, 목포, 여수, 순천 등 전라권</td>
+                            <td>5일 ~ 10일 이내</td>
+                            <td>6개월 ~ 9개월 내외</td>
+                            <td>사회적 배려 대상자 특례 확대 실시</td>
+                        </tr>
+                        <tr>
+                            <td>**기타 지방법원 (춘천, 제주 등)**</td>
+                            <td>강원 춘천, 원주, 강릉 및 제주도 전역</td>
+                            <td>7일 ~ 15일 이내</td>
+                            <td>6개월 ~ 10개월 내외</td>
+                            <td>사건 규모 대비 인력 사정으로 다소 지연</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p class="highlight"><strong>도산법 전문 분석:</strong> 표에서 알 수 있듯이, 3대 광역 회생법원이 신규 가동되는 2026년부터는 충청권, 경북권, 전남북권 거주자들도 기존 일반 지법을 경유할 때보다 개시결정 소요 기간이 약 2개월 이상 대폭 감축되었습니다. 이에 맞춰 저렴한곳만을 무턱대고 탐색하는 대신, 관할 법원의 기조를 정밀 파악하고 있는 전문 법무사나 변호사 컨설팅을 다이렉트로 매칭해 신청하는 것이 기각 방지와 시간 낭비 방지의 가장 빠른 지름길입니다.</p>
+
+                <div class="chart-placeholder">
+                    <p><strong>[개인회생 법적 절차 표준 흐름도]</strong></p>
+                    <div class="diagram-container">
+                        <div class="diagram-box">1. 신청서 접수<br>(금지명령 동시신청)</div>
+                        <div class="diagram-arrow">▶</div>
+                        <div class="diagram-box">2. 금지명령<br>(독촉 및 압류 방지)</div>
+                        <div class="diagram-arrow">▶</div>
+                        <div class="diagram-box">3. 보정권고 및 처리<br>(서류 보완 절차)</div>
+                        <div class="diagram-arrow">▶</div>
+                        <div class="diagram-box">4. 개시결정<br>(법원 계좌 부여)</div>
+                    </div>
+                    <div class="diagram-container" style="margin-top: 15px;">
+                        <div class="diagram-box">5. 채권자집회<br>(출석 및 변제 확인)</div>
+                        <div class="diagram-arrow">▶</div>
+                        <div class="diagram-box">6. 인가결정<br>(본격 변제기간 누적)</div>
+                        <div class="diagram-arrow">▶</div>
+                        <div class="diagram-box">7. 2년/3년 납부 완료<br>(면책 신청 및 성공)</div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <h3 id="shortcut_conditions">3. 변제기간 2년(24개월) 단축 특례 대상자 6가지 유형 분석</h3>
+                <p>일반적으로 변제 기간은 3년을 준수해야 하지만, 법원 실무준칙 제424호에 따라 일정한 배려가 필요하다고 판단되는 사회 취약계층이나 생산적 생산활동을 조속히 장려해야 하는 연령대의 경우에는 24개월 이내로 기간을 전격 줄여줍니다. 단축 결정을 받게 될 경우 동일한 조건에서도 총상환 변제액 자체가 최대 33%가량 일괄 감소하기 때문에 엄청난 장점과 혜택을 지니게 됩니다.</p>
+
+                <h4>3.1. 만 30세 미만의 성실 청년층</h4>
+                <p>서울, 수원, 부산을 필두로 새로 신설된 대전, 대구, 광주에서도 만 30세 미만 미성년에서 20대 후반까지의 청년층의 과도한 부채 구제를 위해 변제기간 단축을 유연하게 배려하고 있습니다. 다만, 단점 내지 유의사항도 명확히 존재합니다. 청년층의 사치, 주식 투자, 가상자산 도박이나 비트코인 마진거래, 인터넷 도박 등으로 파생된 사행성 채무의 비율이 비이상적으로 높거나 전체 납입 원금 변제율이 극도로 낮은(예: 20% 미만) 수준이라면 법원의 보정 심사 시 기간 단축 기각 결정이 내려지며 원칙적인 36개월 변제계획안 작성을 재권고받게 됩니다.</p>
+
+                <h4>3.2. 2인 이상 미성년 자녀 양육 가구 (다자녀 기준 완화)</h4>
+                <p>보건복지부의 인구 저출생 비상 사태 기조에 맞추어 사법부 정책 역시 대폭 전향적으로 변경되었습니다. 과거 3인 이상의 다자녀 가구에 한해서 한정적으로 부여되던 기간 감면 특혜가 이제는 만 19세 미만 미성년 자녀를 2명 이상 양육 중인 부모까지 확대 적용받을 수 있게 되었습니다. 30대나 40대 자녀 부양 의무가 큰 가장들이 가계를 신속히 정상화시킬 수 있도록 24개월 변제로 유도하는 복지성 금융 구조조정 시스템입니다.</p>
+
+                <h4>3.3. 만 65세 이상 고령자 및 중증 장애인</h4>
+                <p>체력적 여건과 건강 문제로 정기적 근로소득을 유지하기 힘든 고령 노동층 및 장애 정도가 심한 장애인(장애인복지법상 구 1급~3급 해당자)은 신청 시 생년월일 입증 증명서와 장애인등록증을 첨부하는 즉시 대부분 까다로운 조건 없이 2년 단축 혜택이 적용됩니다. 일용직, 최저임금의 단시간 근로 등으로 간신히 생계를 유지하며 회생을 도모하는 이들에게 사법부가 부여하는 인도적 배려조치입니다.</p>
+
+                <h4>3.4. 한부모가정 및 전세사기 피해 구조자</h4>
+                <p>한부모가족지원법의 대상이 되는 홀어머니나 홀아버지 세대, 그리고 사회적 문제로 대두되어 정부 특별 구제법 결정을 받은 전세 사기 피해자들 역시 조속히 주거 안정과 가계 건전성을 획득해야 하는 필요가 크기 때문에 변제 기한 단축 자격을 기본 취득합니다. 특히 전세사기 피해자의 보증금 상환 부담은 청산가치(자산) 계산 산정 과정에서도 전액 공제 제외 혜택을 부여받으므로 변제 금액 산출 시 제일 저렴하게 최종 계산 결과가 유도됩니다.</p>
+
+                <hr>
+
+                <h3 id="payment_calculator">4. 2026년 최저 생계비 기준 월 변제 금액 및 모의 계산</h3>
+                <p>가용소득이란 채무자의 월 실질소득에서 가족 수에 비례한 법정 생계비를 제한 순수 가용 재원입니다. 매월 법원 계좌로 입금해야 하는 실제 변제 한도가 되며, 2026년도 기준 중위소득 60% 상향 고시에 따른 보건복지부 고시 적용 수치는 다음과 같습니다. 본 수치에 근거하여 개인회생기간 동안의 부담금이 정밀 산출됩니다.</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>가구 구성원 수 (부양가족)</th>
+                            <th>2025년 기준 법정 생계비</th>
+                            <th>2026년 기준 법정 생계비 (60% 적용)</th>
+                            <th>월 변제금 예시 (월 소득 300만원 기준)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>**1인 가구**</td>
+                            <td>1,435,208 원</td>
+                            <td>**1,538,543 원**</td>
+                            <td>약 1,461,457 원</td>
+                        </tr>
+                        <tr>
+                            <td>**2인 가구**</td>
+                            <td>2,359,595 원</td>
+                            <td>**2,519,575 원**</td>
+                            <td>약 480,425 원</td>
+                        </tr>
+                        <tr>
+                            <td>**3인 가구**</td>
+                            <td>3,015,212 원</td>
+                            <td>**3,215,422 원**</td>
+                            <td>소득 미달 (회생 자격 요건 상담 요망)</td>
+                        </tr>
+                        <tr>
+                            <td>**4인 가구**</td>
+                            <td>3,658,664 원</td>
+                            <td>**3,896,843 원**</td>
+                            <td>소득 미달 (배우자 합산 혹은 소득 소명 필수)</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="form-section" id="payment_calculator">
+                    <h3>2026년도 개인회생 기간 및 변제 금액 시뮬레이터</h3>
+                    <p>본인의 실질 소득과 재산, 부양 가족 상황을 입력하시면 법원에 납입할 예상 변제금과 상환 기간을 모의 산정해 보실 수 있습니다.</p>
+                    
+                    <form id="main_calc_form" onsubmit="return false;">
+                        <label for="calc_income">1. 본인의 월 실수령액 (원 단위)</label>
+                        <input type="number" id="calc_income" placeholder="예: 2800000" required>
+
+                        <label for="calc_debt">2. 총 미상환 부채 총액 (원 단위)</label>
+                        <input type="number" id="calc_debt" placeholder="예: 60000000" required>
+
+                        <label for="calc_assets">3. 본인 소유 총 순자산 (청산가치 총합, 보증금/차량 등)</label>
+                        <input type="number" id="calc_assets" placeholder="예: 20000000" required>
+
+                        <label for="calc_family">4. 본인을 포함한 부양가족 수 (생계비 기준)</label>
+                        <select id="calc_family">
+                            <option value="1">1인 가구 (단독 세대)</option>
+                            <option value="2">2인 가구 (미성년자녀 1인 또는 노부모 부양)</option>
+                            <option value="3">3인 가구 (배우자 비근로 및 미성년자녀 1인 등)</option>
+                            <option value="4">4인 가구 (자녀 2인 양육 등)</option>
+                        </select>
+
+                        <label for="calc_special">5. 법원 단축 특별 사유 해당 여부</label>
+                        <select id="calc_special">
+                            <option value="no">해당 조건 없음 (일반 36개월 적용)</option>
+                            <option value="yes">만 30세 미만 청년 또는 만 65세 고령자 (24개월 단축 목표)</option>
+                            <option value="yes_multi">미성년 자녀 2명 이상 양육 중 (24개월 단축 목표)</option>
+                        </select>
+
+                        <button type="button" class="submit-btn" onclick="calculateRehabilitation()">예상 기간 및 월 변제금 계산하기</button>
+                    </form>
+
+                    <div id="calc_result" class="calc-result-box">
+                        <div id="calc_result_text"></div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <h3 id="cost_analysis">5. 개인회생 신청 시 소요 비용 및 가장 합리적인 수임료 설계 방안</h3>
+                <p>채무 독촉을 막고 가장 빠르게 구제받기 위해서는 전문 대행인 업체의 상담과 견적 비교가 우선시됩니다. 그러나 터무니없이 싼곳만을 미끼 삼아 선전하거나, 과도한 현금지원, 상품권 지급, 도를 넘는 신규 가입 이벤트를 내거는 곳은 사무장이 명의를 빌려 편법 운영하는 무자격 브로커 불법 업체일 가능성이 농후합니다. 사기 피해를 예방하고 비용 장단점을 분석해 안전하게 진행할 것을 적극 추천합니다.</p>
+
+                <h4>5.1. 법원에 반드시 실비로 납입해야 하는 비용</h4>
+                <p>법률 사무실에 지급하는 비용과 별개로 법원에 의무 납입하는 정부 필수 공과금이 존재합니다.
+                    <ul>
+                        <li>정부 수입인지대: 서면 접수 시 30,000원 상당 (인터넷 전자 소송 이용 시 10% 자동 할인 적용되어 27,000원 납입)</li>
+                        <li>송달료 계산: 기본 1회 송달료는 5,200원이며, 보통 채권자 수에 맞춰 10회분 내외의 정액 송달비가 기본적으로 가용 책정됩니다. (채권자가 5개 사일 경우 기본 송달비는 약 30~40만원 수준에 수렴합니다.)</li>
+                        <li>외부 회생위원 선임 비용: 채무자가 개인사업자인 경우 법률 지식을 지닌 외부 심사관의 회생 감정 비용 150,000원이 예납 금액으로 추가 청구됩니다.</li>
+                    </ul>
+                </p>
+
+                <h4>5.2. 대리인 수임료 비교와 수임료 분할 혜택 활용 요령</h4>
+                <p>도산전문 법무법인의 경우 채권자의 난이도와 개수, 자산 현황 보정 강도에 맞춰 정식 선임비를 책정합니다. 일반적으로 국내 평균 가격 기준은 채권자 수 5개 이하 기준 150만원에서 200만원 사이가 가장 평범한 순위 시세를 이룹니다. 채권자 수가 10여 개를 넘어가며 사채나 보증금 채무 등 복잡한 채무 종류가 혼재되어 있다면 평균 250만원 선의 견적이 예상될 수 있습니다.</p>
+                <p>목돈 마련이 힘든 사회 초년생들이나 청년들을 위하여 최근 대다수 전문 법조 브랜드 업체들은 카드 6개월 할부 지원 또는 수임료 무이자 3회에서 5회 분할 입금 프로모션을 일상화하고 있습니다. 초기 소액의 계약금으로 법정 제출을 속행하여 급박한 자산 압류나 연체 통지를 우선 다이렉트 중지시킨 뒤, 나머지 중도금과 잔금은 매달 분할 상환하는 납입 방식입니다. 카카오톡 상담 채널이나 유선 전화를 통해 분할 한도를 조율해 진행하는 것이 심리적 경제 부담을 제일 아끼는 안전책입니다.</p>
+
+                <hr>
+
+                <h3 id="community_reviews">6. 온라인 커뮤니티(디시, 보배드림, 펨코 등) 내돈내산 회생 리얼 후기와 무직자 처세법</h3>
+                <p>네이버 지식인이나 구글 검색창 외에도 채무자들의 진솔한 고충과 꿀팁이 오가는 주요 커뮤니티 공간으로는 디시인사이드 회생 갤러리, 보배드림 자유게시판, 에펨코리아(펨코) 재테크 채널 등이 있습니다. 이곳의 무수한 실제 사연들과 내돈내산 가입 이력 후기를 통해 배울 수 있는 실용적인 노하우를 집약해 드립니다.</p>
+
+                <h4>6.1. 인가 직후 신용회복 및 신용카드 가입의 오해와 진실</h4>
+                <p>커뮤니티 내 많은 신규 신청자들이 빈번히 질문하는 내용이 개인회생기간 동안 토스, 카카오톡 등 은행 어플이나 인터넷 핀테크 앱상에서 신용 등급 조회가 가능한지, 신규 체크카드는 발급 가능한지 여부입니다. 회생 인가 이후가 되면 기존 통장 압류 및 카드 거래 거부 제재는 전액 실효 폐지되므로 일반 금융 체크카드는 누구나 새로 가입하여 제한 없이 사용이 가능합니다.</p>
+                <p>단, 3년에서 5년 간의 변제 계획 기간 중에는 한국신용정보원에 연체 및 공공기록 코드가 등재되어 관리되므로 본인 명의의 일반 신용카드는 발급받으실 수 없습니다. 단, 성실 납부 기간이 2년을 넘긴 채무자에 대해서는 주택금융 소액론 혹은 국민카드 등 특정 브랜드 사에서 담보 한도가 제한된 소액 신용카드 발급 이벤트를 간헐적으로 진행하므로 해당 혜택 요건을 유심히 비교하여 신청해 보는 것을 권합니다.</p>
+
+                <h4>6.2. 무직자 및 프리랜서도 개인회생기간 적용이 가능한지</h4>
+                <p>개인파산은 정기적 소득 증빙이 아예 전무한 극빈 빈곤층에게 제일 적합한 반면, 개인회생은 반복적이고 정기적인 영리 취득 가능성이 존재해야 자격 요건을 취득합니다. 하지만 현시점 무직 상태라 해서 전적으로 낙심할 필요는 없습니다. 건설 현장 일용 근로자, 인스타그램 SNS 채널 마케터, 유튜브 크리에이터, 쿠팡 배달 프리랜서 라이더, 학습지 가정 교사 등 3.3% 원천징수 대상 프리랜서 노동자라도 수입이 있음을 입증하는 소장 확인서나 은행 입금 실적 자료만 법원에 투명하게 소명할 수 있다면, 누구나 차별점 없이 무사히 개시 승인을 받을 수 있습니다.</p>
+
+                <hr>
+
+                <h3 id="court_trends">7. 사법 트렌드로 바라본 2026년 개인회생 주요 정책 변화상</h3>
+                <p>2026년 사법부 도산 제도는 채무자의 전방위적 생계권 강화를 기본 기조로 두고 운영됩니다. 대표적인 변화 3가지는 다음과 같습니다.</p>
+                
+                <h4>7.1. 통장 압류 방지 최소 생계금 보호 한도 상향 조정</h4>
+                <p>물가 상승 인플레이션 압박을 방지하기 위하여, 압류금지 예금 채권의 법정 금액 하한 기준이 기존 185만원 수준에서 2026년부터 일괄 250만원으로 대폭 변경 상향되었습니다. 따라서 불의의 사고로 전 금융권 통장거래 정지가 일어난 상황에서도 주택가 임대 보증금 일부나 병원비 치료 목적으로 활용할 최소 기본금 250만원 한도는 법의 제재 없이 오롯이 개인 소유로 지켜낼 수 있게 되었습니다.</p>
+
+                <h4>7.2. 첨단 AI 기술 접목을 통한 서류 통합 전산화 의무</h4>
+                <p>채무자가 각 은행, 제2금융권, 대부업체를 일일이 직접 발걸음하여 부채증명원을 수수료 내가며 고생스럽게 수령해야 하던 비효율이 2026년 기점으로 거의 해소되었습니다. 사법부와 행정안전부 연계 시스템 고도화로 서류가 전면 간소화 전산 통합되어, 카카오톡이나 토스 앱 등 모바일 인터페이스상에서도 본인 인증 터치 한 번으로 법원용 부채 이력이 오토 전송되어 다이렉트 즉각 회산 심사 서류로 수집 연동됩니다. 챗지피티 및 제미나이 등 첨단 인공지능 보조 인프라가 적용된 도산 법무 시스템의 혁명적 보편화 산물입니다.</p>
+
+                <hr>
+
+                <div class="external-links">
+                    <h3 id="legal_resources">8. 공인된 신뢰성 높은 법률 자료 및 외부 공식 사이트</h3>
+                    <p>인터넷의 출처 모를 가짜 뉴스에 현혹되지 마시고, 국가 기관 및 보증된 독립 전문 법률 사이트의 엄밀히 판정된 세액과 가이드라인을 참조하시기 바랍니다.</p>
+                    <ul>
+                        <li><a href="https://recoverylawj.koreahankang.com" target="_blank" title="개인회생기간 자가 분석 도구">Reliabledone Finance: 2026 개인회생 변제기간 및 자산 자가진단 분석기</a> (2026년 법 개정 시뮬레이션 전문 독립 자문처)</li>
+                        <li><a href="https://slb.scourt.go.kr" target="_blank" title="서울회생법원 공식 포털">대한민국 서울회생법원 공식 도산지원 포털</a> (실무준칙 규정 및 서울지역 변제기간 안내의 공신력 있는 법원 근거)</li>
+                        <li><a href="https://help.scourt.go.kr" target="_blank" title="법원 전자민원센터">대법원 전자민원센터: 개인회생 및 파산 신청양식</a> (관할 지법 조회 및 송달료 인지대 일람표의 공식 데이터)</li>
+                        <li><a href="https://www.law.go.kr" target="_blank" title="국가법령정보센터">국가법령정보센터: 채무자 회생 및 파산에 관한 법률</a> (기본 변제 기간 한도 및 부양가족 생계비 배제 등의 성문법 규정)</li>
+                        <li><a href="https://namu.wiki/w/%EA%B0%9C%EC%9D%B8%ED%9A%8C%EC%83%9D" target="_blank" title="개인회생 나무위키">나무위키 백과: 개인회생 제도 개론</a> (비전공 일반인들의 눈높이에 맞춘 일상 용어 및 단점 정리 백과사전)</li>
+                    </ul>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // 사이드 간이 계산기용 JS
+        function runQuickCalc() {
+            var income = parseFloat(document.getElementById('side_income').value);
+            var family = parseInt(document.getElementById('side_family').value);
+            var isShortcut = document.getElementById('side_shortcut').value === 'yes';
+
+            if (!income || income <= 0) {
+                alert("정확한 소득 금액을 입력해 주세요.");
+                return;
+            }
+
+            var baseLiving = {
+                1: 1538543,
+                2: 2519575,
+                3: 3215422,
+                4: 3896843
+            };
+
+            var livingExpense = baseLiving[family];
+
+            if (income <= livingExpense) {
+                document.getElementById('side_result_text').innerHTML = "입력하신 소득이 2026년 기준 최소 법정 생계비(" + livingExpense.toLocaleString() + "원)에 못 미치므로 개인파산 수혜를 검토하는 것이 훨씬 합리적입니다.";
+                document.getElementById('side_calc_result').style.display = 'block';
+                return;
+            }
+
+            var monthlyRepay = income - livingExpense;
+            var finalPeriod = isShortcut ? 24 : 36;
+            var totalRepay = monthlyRepay * finalPeriod;
+
+            var txt = "귀하의 예상 월 변제금은 약 <strong>" + Math.round(monthlyRepay).toLocaleString() + "원</strong>이며, 예상 완납 기간은 <strong>" + finalPeriod + "개월</strong>, 누적 총 변제 예정액은 약 " + Math.round(totalRepay).toLocaleString() + "원입니다.";
+            document.getElementById('side_result_text').innerHTML = txt;
+            document.getElementById('side_calc_result').style.display = 'block';
+        }
+
+        // 메인 영역 양방향 모의 시뮬레이터 JS
+        function calculateRehabilitation() {
+            var income = parseFloat(document.getElementById('calc_income').value) || 0;
+            var debt = parseFloat(document.getElementById('calc_debt').value) || 0;
+            var assets = parseFloat(document.getElementById('calc_assets').value) || 0;
+            var family = parseInt(document.getElementById('calc_family').value) || 1;
+            var shortcutType = document.getElementById('calc_special').value;
+
+            var baseLiving = {
+                1: 1538543,
+                2: 2519575,
+                3: 3215422,
+                4: 3896843
+            };
+
+            var minLiving = baseLiving[family];
+
+            if (income <= 0 || debt <= 0) {
+                alert("정확한 소득 및 총 부채액 수치를 입력하세요.");
+                return;
+            }
+
+            if (income <= minLiving) {
+                document.getElementById('calc_result_text').innerHTML = "<h4>자가진단 소득 미달 고지</h4><p>귀하의 입력 소득은 2026년 가구 부양가족 수 기준 법정 최저생계비(" + minLiving.toLocaleString() + "원) 이하에 위치하여 개인회생 인가 자격 요건을 충족하기 어렵습니다. 만 60세 이상의 고령자이거나 신체 장해 등 명확한 노동력 상실 원인이 입증된다면 원금 전액을 탕감해 주는 개인파산제도 신규 가입 상담을 정식 의뢰하시기 바랍니다.</p>";
+                document.getElementById('calc_result').style.display = 'block';
+                return;
+            }
+
+            var monthlyPayment = income - minLiving;
+            var basePeriod = (shortcutType !== 'no') ? 24 : 36;
+            var totalRepayment = monthlyPayment * basePeriod;
+
+            // 청산가치 보장의 원칙 검증 단계
+            if (totalRepayment < assets) {
+                var neededMonths = Math.ceil(assets / monthlyPayment);
+                if (neededMonths > 60) {
+                    // 60개월로도 본인 재산 보장이 안 될 경우, 법원은 월 변제금을 상향하거나 소유 재산을 분할 매각할 것을 권고함.
+                    monthlyPayment = assets / 60;
+                    basePeriod = 60;
+                    totalRepayment = monthlyPayment * basePeriod;
+                } else {
+                    basePeriod = neededMonths;
+                    if (basePeriod < 36 && shortcutType === 'no') {
+                        basePeriod = 36; // 일반인은 단축 사유 없으면 자산이 낮아도 최소 36개월 변제 원칙 유지
+                    }
+                    totalRepayment = monthlyPayment * basePeriod;
+                }
+            }
+
+            if (totalRepayment > debt) {
+                totalRepayment = debt;
+                basePeriod = Math.ceil(debt / monthlyPayment);
+            }
+
+            var reliefAmount = debt - totalRepayment;
+            var reliefRate = debt > 0 ? ((reliefAmount / debt) * 100).toFixed(1) : 0;
+
+            if (reliefAmount < 0) {
+                reliefAmount = 0;
+                reliefRate = 0;
+            }
+
+            var resHTML = "<h4>2026년 기준 모의 법률 진단 분석서</h4>" +
+                "<p><strong>1. 월 예상 고정 변제액:</strong> 매월 약 " + Math.round(monthlyPayment).toLocaleString() + " 원</p>" +
+                "<p><strong>2. 최종 변제 납입 기간:</strong> 법정 상환 " + basePeriod + " 개월 적용</p>" +
+                "<p><strong>3. 변제 기간 내 총 상환액:</strong> 합계 약 " + Math.round(totalRepayment).toLocaleString() + " 원</p>" +
+                "<p><strong>4. 총 예상 원금 탕감액:</strong> 약 " + Math.round(reliefAmount).toLocaleString() + " 원 (원금 대비 탕감 비율: " + reliefRate + "%)</p>" +
+                "<p class='calc-note'>※ 본 모의 견적은 입력하신 추정 자산(청산가치)과 2026년도 법정 최소 유지 생계비를 기준으로 산출되었습니다. 전세보증금 지역 공제 한도 및 자산 가치 감가상각 반영에 따라 세부적인 할인 혜택을 다르게 설정할 수 있으므로, 반드시 신뢰성 있는 전용 상담 업체를 통해 꼼꼼히 비교하시길 권장합니다.</p>";
+
+            document.getElementById('calc_result_text').innerHTML = resHTML;
+            document.getElementById('calc_result').style.display = 'block';
+        }
+    </script>
+  
